@@ -33,6 +33,12 @@
 * Login into pod - kubectl exec -it $POD_NAME --namespace=test-aki -- bash
 * Details - kubectl describe pod $POD_NAME | deployment $DEP_NAME | service $SVC_NAME
 * Scale Deployment - kubectl scale --replicas=3 deployment/http-hello
+* Rollout Deployment - kubectl rollout status deployment/http-hello & kubectl set image deployment/http-hello httpd-containers=httpd:2.4-alpine 
+* History of rollout - kubectl rollout history deployment/http-hello
+* Labeling - kubectl label node minikube distribution=ubuntu.Use nodeSelector option to place the deployment only on node which labeled as distribution=ubuntu
+* Healthcheck - Readiness Probes & Liveness Probes 
+* Readiness Probes - Once pod deployed to check it is ready or not.
+* Liveness Probes - After pod is ready, checking the application whether it is live or not
 
 # Demo Commands
 * kubectl run hello-http --image=httpd --replicas=2 --port=80
@@ -43,3 +49,10 @@
 * curl $(minikube service hello-http --url)
 * kubectl scale --replicas=3 deployment/http-hello
 * kubectl create -f file.yaml
+* kubectl rollout status deployment/http-hello
+* kubectl set image deployment/http-hello httpd-containers=httpd:2.4-alpine
+* kubectl rollout history deployment/http-hello
+* kubectl rollout history deployment/http-hello --revision=2
+* kubectl describe node minikube
+* kubectl label node minikube distribution=ubuntu
+* 
