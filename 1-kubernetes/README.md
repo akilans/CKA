@@ -1,7 +1,31 @@
 # Kubernetes Concepts
 
+# Docker basics
+* Components - Docker cli, Deamon
+* Install Docker
+* Run container - docker run busybox echo "Hello Docker"
+* Run container interactively - docker run -it busybox --sh
+* List all the images - docker images
+* List all the containers - docker ps -a
+* Kill all the containers - docker rm $(docker ps -aq)
+* Kill all the containers - docker container rm $(docker container ps -aq)
+* Remove all the images not using by container - docker image prune --all
+* Remove all the images not using - docker image rm $(docker images -q)
+* Run container in background - docker run -d --name http-server httpd
+* Login into running container - docker container exec -it http-server bash
+* Stop the container - docker container stop http-server
+* Kill the container - docker container rm http-server
+* Port mapping - docker container run -d --name http-server -p 8000:80 httpd
+* Kill the container once exits - docker container run --rm --name hello-rm-container -p 8000:80 httpd
+* Inspect docker container - docker container inspect http-server
+* Get logs from a container - docker container logs http-server -f
+* Build an image from a Dockerfile - docker image build -t akilan/httpd-server:latest -f Dockerfile .
+* Login into running container - docker container exec -it httpd-server --bash
+* Create image from a container - docker container commit akilan-http-new akilan/httpd-server-new
+* Tag a new image - docker image tag akilan/httpd-server httpd-modified
+
 # Kubernetes Architeture
-* Master - API server, Scheduler & Control Manager
+* Master - Etcd , API server, Scheduler & Control Manager
 * Node - Docker, Kubelet, Kube-proxy
 
 # Minikube
@@ -39,6 +63,7 @@
 * Healthcheck - Readiness Probes & Liveness Probes 
 * Readiness Probes - Once pod deployed to check it is ready or not.
 * Liveness Probes - After pod is ready, checking the application whether it is live or not
+* Accessing Dashboard in secure way- kubectl proxy - http://localhost:8001/api/v1/namespaces/kube-system/services/kubernetes-dashboard/proxy
 
 # Demo Commands
 * kubectl run hello-http --image=httpd --replicas=2 --port=80
@@ -55,4 +80,17 @@
 * kubectl rollout history deployment/http-hello --revision=2
 * kubectl describe node minikube
 * kubectl label node minikube distribution=ubuntu
+
+# DNS - Service Discovery
+* Built-in DNS service
+* $SERVICE_NAME.$NAMESPACE.svc.cluster.local
+* cat /etc/resolv.conf
+```bash
+nameserver 10.96.0.10
+search default.svc.cluster.local svc.cluster.local cluster.local
+options ndots:5
+```
+* curl http-service.aki-test.svc.cluster.local
+
+# Volume
 * 

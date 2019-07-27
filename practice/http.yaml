@@ -1,0 +1,56 @@
+---
+apiVersion: v1
+kind: Namespace 
+metadata:
+  name: aki-test
+
+---
+
+apiVersion: apps/v1 
+kind: Deployment
+metadata:
+  name: http-deployment
+  namespace: aki-test
+  labels:
+    app: http-deployer
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: http
+  template:
+    metadata:
+      labels:
+        app: http 
+    spec:
+      containers:
+        - image: httpd
+          readinessProbe:
+            httpGet:
+              path: /index.html
+              port: 80
+            initialDelaySeconds: 5
+            timeoutSeconds: 5
+          livenessProbe:
+            httpGet:
+              path: /index.html
+              port: 80
+            initialDelaySeconds: 5
+            timeoutSeconds: 5
+          name: http-container
+          ports:
+          - containerPort: 80
+      restartPolicy: Always
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: http-service
+  namespace: aki-test
+spec:
+  selector:
+    app: http
+  type: NodePort
+  ports:
+    - port: 80

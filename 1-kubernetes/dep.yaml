@@ -1,0 +1,20 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name:  http-deployment
+  namespace: test-aki
+spec:
+  selector:
+    matchLabels:
+      app: httpd-server
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app : httpd-server
+    spec:
+      containers:
+      - image: httpd
+        name: http-container
+        ports:
+        - containerPort : 80
