@@ -1,0 +1,48 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: php
+  namespace: aki-test
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: php
+  template:
+    metadata:
+      labels:
+        app: php
+    spec:
+      containers:
+      - name: php
+        image: akilan/cka-php-mysql-app:1
+        env:
+          # Use secret in real usage
+        - name: MYSQL_ROOT_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: mysql-secret
+              key: mysql_root_pwd
+        - name: MYSQL_SERVICE_NAME
+          value: mysql-service
+        ports:
+        - containerPort: 80
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: php-service
+  namespace: aki-test
+  labels:
+    run: php-service
+spec:
+  type: NodePort
+  ports:
+  - port: 80
+    nodePort: 30090
+  selector:
+    app: php
+
+---

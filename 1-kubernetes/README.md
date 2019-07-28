@@ -92,5 +92,8 @@ options ndots:5
 ```
 * curl http-service.aki-test.svc.cluster.local
 
+# Secrets
+* kubectl create secret generic mysql-secret --from-literal=mysql_root_pwd=root
+
 # Volume
 * 

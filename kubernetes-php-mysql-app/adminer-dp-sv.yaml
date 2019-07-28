@@ -1,0 +1,39 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: adminer
+  namespace: aki-test
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: adminer
+  template:
+    metadata:
+      labels:
+        app: adminer
+    spec:
+      containers:
+      - name: adminer
+        image: adminer
+        ports:
+        - containerPort: 8080
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: adminer-service
+  namespace: aki-test
+  labels:
+    run: adminer-service
+spec:
+  type: NodePort
+  ports:
+  - port: 8080
+    nodePort: 30070
+  selector:
+    app: adminer
+
+---
