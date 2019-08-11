@@ -6,3 +6,5 @@
 * Candidate Handbook: https://www.cncf.io/certification/candidate-handbook
 
 * Exam Tips: http://training.linuxfoundation.org/go//Important-Tips-CKA-CKAD
+
+* Kubernetes Disaster Recovery - https://velero.io/
