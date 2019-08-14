@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: webapp
+  namespace: default
+spec:
+  containers:
+  - env:
+    - name: LOG_HANDLERS
+      value: file
+    image: kodekloud/event-simulator
+    imagePullPolicy: Always
+    volumeMounts:
+    - mountPath: /log
+      name: host-volume
+      readOnly: true
+  restartPolicy: Always
+  volumes:
+  - name: host-volume
+    persistentVolumeClaim:
+        claimName: claim-log-1

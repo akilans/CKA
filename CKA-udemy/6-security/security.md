@@ -68,3 +68,27 @@
 * curl http://localhost:8001 -k
 * curl http://localhost:8001/apis -k | grep "name"
 * curl http://localhost:8001/apis -k | grep "name"
+* curl https://localhost:6443/version -k
+
+### Role Based Access Control - RBAC
+* kubectl auth can-i delete pod|deployments|nodes
+* kubectl auth can-i delete pod --as dev-user
+* Creata role and role bindings
+* kubectl get role [mention resource and verbs(list,delete,create)]
+* kubectl get rolebindings
+* kubectl edit role developer -n blue
+
+### ClusterRole and ClusterRolebindings
+* kubectl api-resources --namespaced=true [pods,secrets,deployments,role,rolebindings,services,volumeclaim] all are namespaced
+* kubectl api-resources --namespaced=false [volume,node,namespace,clusterRole,ClusterRolebindings,certificateSiginingRequest] all are namespaced
+
+### Image Security
+* To pull image from private docker registry create secret by passing docker credentials
+* kubectl create secret docker-registry regcred --docker-server=<your-registry-server> --docker-username=<your-name> --docker-password=<your-pword> --docker-email=<your-email>
+* kubectl create secret docker-registry private-reg-cred --docker-server=myprivateregistry.com:5000 --docker-username=dock_user --docker-password=dock_password --docker-email=dock_user@myprivateregistry.com
+* add imagePullSecrets:
+      - name: regcred
+
+
+### Network Policies
+* 
