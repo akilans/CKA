@@ -97,3 +97,12 @@
 * kubectl get configmap coredns -n kube-system -o yaml - See it here
 * coredns run as a service - kube-dns
 * kubectl describe configmap coredns -n kube-system - Check the root domain here
+
+### Ingress
+* kubectl create namespace ingress-space
+* kubectl create configmap nginx-configuration --namespace ingress-space
+* kubectl create serviceaccount ingress-serviceaccount --namespace ingress-space
+* create role and rolebindings
+* https://github.com/kubernetes/ingress-nginx/blob/master/docs/deploy/index.md
+* create ingress service. refer ingress-service.yaml
+* 
