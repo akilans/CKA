@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: null
+  labels:
+    run: hr-web-app
+  name: hr-web-app-service
+spec:
+  ports:  
+  - port: 8080
+    protocol: TCP
+    nodePort: 30082
+  selector:
+    run: hr-web-app  
+  type: NodePort
+status:
+  loadBalancer: {}
