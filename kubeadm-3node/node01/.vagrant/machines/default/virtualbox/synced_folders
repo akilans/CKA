@@ -1,0 +1,1 @@
+{"rsync":{"/vagrant":{"type":"rsync","guestpath":"/vagrant","hostpath":"/home/akilan/Desktop/CKA-exam/kubeadm-3node/node01","disabled":false,"__vagrantfile":true,"owner":"vagrant","group":"vagrant"}}}

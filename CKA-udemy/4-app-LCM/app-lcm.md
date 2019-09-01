@@ -2,14 +2,26 @@
 
 ### Rollng update and Rollback
 
+* kubectl apply -f my-apache.yaml --record
 * kubectl rollout status deployment/httpd-deployment
 * Deployment Strategies - Recreate, RollingUpdate[default],
-* kubectl set image deployment/httpd-deployment $CONTAINER_NAME=httpd:latest
-* kubectl edit deployment httpd-deployment
+* kubectl set image deployment/httpd-deployment $CONTAINER_NAME=httpd:latest --record
+* kubectl set image deployment/my-apache apache=httpd:alpine --record=true
 * kubectl rollout history deployment/httpd-deployment
 * kubectl rollout undo deployment/httpd-deployment
 * kubectl rollout undo deployment/httpd-deployment --to-revision=2
 * kubectl set image deployment/frontend simple-webapp=kodekloud/webapp-color:v2
+
+### Horizontal Auto Scaler
+* Install heapster or metrics server
+* kubectl top nodes
+* kubectl top pods
+* mention cpu resource while deployment
+* kubectl autoscale deployment my-apache --min=1 --max=5 --cpu-percent=50
+* kubectl run -i --tty load-generator --image=busybox /bin/sh
+* while true; do wget -q -O- http://my-apache; done
+
+
 
 ### Secrets, Environment vars, commands
 * In docker, if u want to run ubuntu image by calling docker run ubuntu it exists immediately. Because it is not having any process and apps to run. Create new image called ubuntu-sleeper from the below Dockerfile
