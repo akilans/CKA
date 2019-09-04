@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: basic-httpd
+spec:
+  selector:
+    matchLabels:
+      app: basic-httpd
+  template:
+    metadata:
+      labels:
+        app: basic-httpd
+    spec:
+      containers:
+      - image: httpd
+        name: httpd-server
+        ports:
+        - containerPort: 80
+      nodeSelector:
+        ssdDisk: "true"
