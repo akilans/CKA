@@ -1,0 +1,17 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: test-job
+spec:
+  completions: 4
+  parallelism: 2
+  backoffLimit: 1
+  activeDeadlineSeconds: 600
+  template:
+    spec:
+      containers:
+      - image: busybox
+        name: busy-box-container
+        command: ["/bin/sh"]
+        args: ["-c","i=0; while [ $i -lt 500 ]; do echo `date '+ %H:%M:%S'`; i=$(( $i+1 ));sleep 1; done"]
+      restartPolicy: Never

@@ -64,3 +64,13 @@ kubeadm join 192.168.33.10:6443 --token 7kv24k.t89226md2oow7fuy \
 * kubectl apply -f daemonsets.yaml
 * kubectl get ds
 * kubectl delete ds httpd-daemonset
+
+### Jobs & CronJobs
+* It just run the task in the pod and completes it. It will not run forever
+* completions 4 - If the completions is 2, it will create 2 pods sequentialy to run the task [ based on the paralelism ]
+* parallesim - 2 Runs the parallel task [ if completions 4, then it will run 2 task at a time]
+* backoffLimit - If error while running job, it will try to create the number of times mentioned in the backoffLimit
+* activeDeadlineSeconds - if the tasks running more than activeDeadlineSeconds then kill the task
+* cronjob - can be schedule to run on [minute, hour, daily, weekly, monthly ]
+* suspend - true means suspend the cron job 
+* 
