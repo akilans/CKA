@@ -73,4 +73,13 @@ kubeadm join 192.168.33.10:6443 --token 7kv24k.t89226md2oow7fuy \
 * activeDeadlineSeconds - if the tasks running more than activeDeadlineSeconds then kill the task
 * cronjob - can be schedule to run on [minute, hour, daily, weekly, monthly ]
 * suspend - true means suspend the cron job 
-* 
+
+### Secrets
+* echo -n admin | base64
+* kubectl create secret generic secret-demo --from-literal=username=admin --from-literal=password=admin
+* Refer cm-pod.yaml
+
+### ConfigMap
+* kubectl create configmap akilan --from-literal=user.name="Akilan Subramanian" --from-literal=user.role="DevOps Engineer"
+* kubectl create configmap akilan-location --from-file=test.config
+* * Refer cm-pod.yaml

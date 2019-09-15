@@ -1,0 +1,35 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: cm-pod
+spec:
+  volumes:
+  - name: akilan-detail-volume
+    configMap:
+      name: akilan-location
+      items:
+      - key: test.config
+        path: akilan.location
+  containers:
+  - image: busybox
+    name: busybox-container
+    env:
+    - name: PASSWORD
+      valueFrom:
+         secretKeyRef:
+            name: secret-demo
+            key: password
+    - name: USERNAME
+      valueFrom:
+         configMapKeyRef:
+            name: akilan
+            key: user.name
+    - name: USERROLE
+      valueFrom:
+         configMapKeyRef:
+            name: akilan
+            key: user.role
+    command: ["sleep","300"]
+    volumeMounts:
+    - name: akilan-detail-volume
+      mountPath: /mydata
