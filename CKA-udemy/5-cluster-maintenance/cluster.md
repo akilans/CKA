@@ -12,8 +12,9 @@
 * apt install kubelet=1.12.0-00
 * kubectl uncordon master
 * kubectl drain node01 --ignore-daemonsets - Next node
-* login to node and run - apt install kubelet=1.12.0-00 
-* kubeadm upgrade apply v1.15.2 - 
+* login to node and run - apt install kubelet=1.12.0-00
+* kubeadm upgrade node config --kubelet-version v1.12.0
+* kubectl uncordon node01
 
 ### Backup and restore
 * Backup all the resources [Pods,deployments, services etc]
