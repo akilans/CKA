@@ -26,14 +26,14 @@
 
 #### Generate certificate Steps for CA 
 * Genereate key - openssl genrsa -out ca.key 2048
-* Certificate signing Request[CSR] - openssl req -new -key ca.key "/CN=KUBERNETES-CA" -out ca.csr
+* Certificate signing Request[CSR] - openssl req -new -key ca.key -subj "/CN=KUBERNETES-CA" -out ca.csr
 * Sign certificate - openssl x509 -req -in ca.csr -signkey ca.key -out ca.crt
 
 #### Generate certificate Steps for kube admin [ using common CA from above]
 * follow the same steps to create admin.key, admin.crt
 * Genereate key - openssl genrsa -out admin.key 2048
-* Certificate signing Request[CSR] - openssl req -new -key admin.key "/CN=kube-admin/O:system:masters" -out admin.csr
-* Sign certificate - openssl x509 -req -in admin.csr -CA ca.crt -signkey ca.key -out admin.crt
+* Certificate signing Request[CSR] - openssl req -new -key admin.key "/CN=kube-admin/O=system:masters" -out admin.csr
+* Sign certificate - openssl x509 -req -in admin.csr -CA ca.crt -CAkey ca.key -CAcreateserial -out admin.crt
 
 * Access kube-server by calling API with necessary certificate details
 * curl https://kube-apiserver:6443/api/v1/pods --key admin.key --cert admin.crt --cacert ca.crt
