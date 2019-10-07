@@ -73,7 +73,9 @@
 ### Role Based Access Control - RBAC
 * kubectl auth can-i delete pod|deployments|nodes
 * kubectl auth can-i delete pod --as dev-user
-* Creata role and role bindings
+* kubectl create role developer --resource=pods --verb=list,create --dry-run -o yaml
+* kubectl create rolebinding dev-user-binding --role=developer --user=dev-user --dry-run -o yaml
+* Create role and role bindings
 * kubectl get role [mention resource and verbs(list,delete,create)]
 * kubectl get rolebindings
 * kubectl edit role developer -n blue
@@ -81,6 +83,8 @@
 ### ClusterRole and ClusterRolebindings
 * kubectl api-resources --namespaced=true [pods,secrets,deployments,role,rolebindings,services,volumeclaim] all are namespaced
 * kubectl api-resources --namespaced=false [volume,node,namespace,clusterRole,ClusterRolebindings,certificateSiginingRequest] all are namespaced
+* kubectl create clusterrole storage-admin --resource=persistentvolumes --verb=list,get,create,delete,watch --dry-run -o yaml > storage-cr.yaml
+* kubectl create clusterrolebinding michelle-storage-admin --clusterrole=storage-admin  --user=michelle --dry-run -o yaml > storage-crb.yaml
 
 ### Image Security
 * To pull image from private docker registry create secret by passing docker credentials
@@ -91,4 +95,6 @@
 
 
 ### Network Policies
+* Ingress and Egress
+* Refer egress.yaml file
 * 

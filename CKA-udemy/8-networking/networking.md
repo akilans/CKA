@@ -55,8 +55,21 @@
 * ip -n red ip route add default via 192.168.2.0 - connect to internet
 * ip -t nat -A PREROUTING --dport 80 --to-destination 192.168.15.1:8080 -j DNAT - Internet can access container app via host port forward
 
+### Docker networking
+* ip link - docker0 is the virtual interface created by docker
+* docker run -p 8000:80 httpd:alpine
+* sudo iptables -nvL -t nat - See the port forwarding rule 8000 -> $CONTAINER_IP:80
+
+
 ### Container Network Interface [CNI]
 * CNI came as a standard to solve the above steps
+* 6443 - Kube-apiserver port
+* 10250 - kubelet port
+* 10251 - kube-scheduler
+* 10252 - kube-controller-manager
+* 2379-2381 - etcd port
+* 30000- 32767 - Worker node ports
+* 
 
 ### Commands
 * ip link -list all the interface
