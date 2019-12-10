@@ -32,7 +32,7 @@
 #### Generate certificate Steps for kube admin [ using common CA from above]
 * follow the same steps to create admin.key, admin.crt
 * Genereate key - openssl genrsa -out admin.key 2048
-* Certificate signing Request[CSR] - openssl req -new -key admin.key "/CN=kube-admin/O=system:masters" -out admin.csr
+* Certificate signing Request[CSR] - openssl req -new -key admin.key -subj "/CN=kube-admin/O=system:masters" -out admin.csr
 * Sign certificate - openssl x509 -req -in admin.csr -CA ca.crt -CAkey ca.key -CAcreateserial -out admin.crt
 
 * Access kube-server by calling API with necessary certificate details
