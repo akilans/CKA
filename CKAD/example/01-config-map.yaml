@@ -1,0 +1,14 @@
+#kubectl create configmap webapp-config-map --from-literal=APP_COLOR=darkblue
+apiVersion: v1
+kind: Pod
+metadata: 
+  labels:
+    name: webapp-color
+  name: webapp-color
+spec:
+  containers:
+  - envFrom:
+    - configMapRef:
+         name: webapp-config-map
+    image: kodekloud/webapp-color
+    name: webapp-color
