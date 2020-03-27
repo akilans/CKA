@@ -7,3 +7,9 @@
 * kubectl create configmap webapp-config-map --from-literal=APP_COLOR=darkblue
 * kubectl create secret generic --from-literal=password=admin123
 * kubectl create secret generic db-secret --from-literal=DB_Host=sql01 --from-literal=DB_User=root --from-literal=DB_Password=password123 --dry-run -o yaml > db-secret.yaml
+* kubectl create quota test --hard=pods=10,requests.memory=5Gi,limits.memory=10Gi --dry-run -o yaml > resource-quota.yaml
+* kubectl taint node node01 spray=mortein:NoSchedule
+* kubectl taint nodes node1 key:NoSchedule- - remove taint from node
+* kubectl taint node master node-role.kubernetes.io/master=true:NoSchedule - taint back
+* kubectl label nodes node01 color=blue
+* 
