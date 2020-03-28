@@ -12,4 +12,9 @@
 * kubectl taint nodes node1 key:NoSchedule- - remove taint from node
 * kubectl taint node master node-role.kubernetes.io/master=true:NoSchedule - taint back
 * kubectl label nodes node01 color=blue
+* git clone https://github.com/kubernetes-sigs/metrics-server.git
+* kubectl apply -f metrics-server/deploy/kubernetes/
+* kubectl top nodes
+* kubectl top pods
+* kubectl logs webapp-2 -c simple-webapp -f
 * 
