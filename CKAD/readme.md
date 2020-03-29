@@ -17,4 +17,12 @@
 * kubectl top nodes
 * kubectl top pods
 * kubectl logs webapp-2 -c simple-webapp -f
-* 
+* kubectl rollout status deployment nginx
+* kubectl rollout history deployment nginx
+* kubectl rollout history deployment nginx --revision=1
+* kubectl set image deployment nginx nginx=nginx:1.17 --record
+* kubectl edit deployments. nginx --record
+* kubectl rollout history deployment nginx --revision=3
+* kubectl rollout undo deployment nginx
+* kubectl create job throw-dice-job --image=kodekloud/throw-dice --dry-run -o yaml
+* kubectl create cronjob throw-dice-cron-job --image=kodekloud/throw-dice --schedule="30 21 * * *" --dry-run -o yaml
