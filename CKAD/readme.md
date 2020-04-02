@@ -26,3 +26,4 @@
 * kubectl rollout undo deployment nginx
 * kubectl create job throw-dice-job --image=kodekloud/throw-dice --dry-run -o yaml
 * kubectl create cronjob throw-dice-cron-job --image=kodekloud/throw-dice --schedule="30 21 * * *" --dry-run -o yaml
+* 
