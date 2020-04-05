@@ -26,4 +26,13 @@
 * kubectl rollout undo deployment nginx
 * kubectl create job throw-dice-job --image=kodekloud/throw-dice --dry-run -o yaml
 * kubectl create cronjob throw-dice-cron-job --image=kodekloud/throw-dice --schedule="30 21 * * *" --dry-run -o yaml
+
+# Add this in ~/.vimrc
+``` bash
+set nu
+set ic
+set expandtab
+set shiftwidth=2
+set tabstop=2
+```
 * 
